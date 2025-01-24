@@ -34,11 +34,11 @@ public class PlayerInputs : MonoBehaviour
             m_cameraTarget.Rotate(Vector3.up, m_pitch * Time.deltaTime * m_lookSpeed);
             m_pitch = 0;
         }
-        if (m_yaw != 0)
-        {
-            m_cameraTarget.Rotate(Vector3.right, m_yaw * Time.deltaTime * m_lookSpeed);
-            m_yaw = 0;
-        }
+        //if (m_yaw != 0)
+        //{
+        //    m_cameraTarget.Rotate(Vector3.right, m_yaw * Time.deltaTime * m_lookSpeed);
+        //    m_yaw = 0;
+        //}
         m_playerForwardTransform.eulerAngles = new Vector3(0, m_cameraTarget.eulerAngles.y, 0);
     }
 

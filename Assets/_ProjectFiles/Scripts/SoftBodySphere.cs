@@ -27,6 +27,8 @@ public class SoftBodySphere : MonoBehaviour
     void Start()
     {
         mesh = new Mesh();
+        SpawnObjectsInSphere();
+        isSpawned = true;
     }
 
    void SpawnObjectsInSphere()
@@ -166,16 +168,6 @@ public class SoftBodySphere : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            /*foreach (GameObject obj in spawnedObjects)
-            {
-                Destroy(obj);
-            }*/
-            //spawnedObjects.Clear();
-            SpawnObjectsInSphere();
-            isSpawned = true;
-        }
         if (isSpawned) { 
             //UpdateMeshFromObjects();
             m_cameraTarget.position = CalculateCenterOfPoints();
