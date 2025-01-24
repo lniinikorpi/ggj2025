@@ -14,8 +14,14 @@ public class SoftBodySphere : MonoBehaviour
     public Material meshMaterial;
 
     GameObject[] spawnedObjects;
+    public List<Rigidbody> spawnedRigidbodies;
     private Mesh mesh;
     private bool isSpawned = false;
+
+    [SerializeField]
+    private Transform m_cameraTarget;
+
+    private Vector3 m_center;
 
 
     void Start()
@@ -52,6 +58,7 @@ public class SoftBodySphere : MonoBehaviour
         foreach (GameObject obj in spawnedObjects)
         {
             obj.AddComponent<Rigidbody>();
+            spawnedRigidbodies.Add(obj.GetComponent<Rigidbody>());
         }
         foreach (GameObject obj in spawnedObjects)
         {
@@ -67,7 +74,7 @@ public class SoftBodySphere : MonoBehaviour
                 joint.connectedBody = obj2.GetComponent<Rigidbody>();
             }
         }
-        SetupMeshRenderer();
+        //SetupMeshRenderer();
     }
     void UpdateMeshFromObjects()
     {
@@ -113,8 +120,8 @@ public class SoftBodySphere : MonoBehaviour
                 int nextRowNextLon = nextRow + nextLon - lon; // Diagonal vertex below
 
                 // Add first triangle
-                triangles.Add(current);
                 triangles.Add(nextRow);
+                triangles.Add(current);
                 triangles.Add(nextRowNextLon);
 
                 // Add second triangle (using the same vertices)
@@ -145,6 +152,18 @@ public class SoftBodySphere : MonoBehaviour
         }
     }
 
+    Vector3 CalculateCenterOfPoints()
+    {
+        Vector3 sum = Vector3.zero;
+        foreach (GameObject go in spawnedObjects)
+        {
+            Vector3 point = go.transform.position;
+            sum += point;
+        }
+
+        return sum / spawnedObjects.Length;  // Average the points
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -158,7 +177,8 @@ public class SoftBodySphere : MonoBehaviour
             isSpawned = true;
         }
         if (isSpawned) { 
-            UpdateMeshFromObjects();
+            //UpdateMeshFromObjects();
+            m_cameraTarget.position = CalculateCenterOfPoints();
         }
     }
 
