@@ -24,6 +24,7 @@ public class Eater : MonoBehaviour
                 Eatable eater = collider.GetComponent<Eatable>();
                 eater.isEaten = true;
                 eater.followTarget = transform;
+                eater.OnEaten += GrowBlob;
                 eatenColliders.Add(collider);
             }
             foreach (var collider in eatenColliders)
@@ -81,5 +82,8 @@ public class Eater : MonoBehaviour
             return;
         }
         m_toBeEatenColliders.Add(other);
+    }
+
+    private void GrowBlob() { 
     }
 }
