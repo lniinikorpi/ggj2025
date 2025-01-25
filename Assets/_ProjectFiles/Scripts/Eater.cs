@@ -1,8 +1,8 @@
-using NUnit.Framework;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class Eater : MonoBehaviour
 {
@@ -89,16 +89,7 @@ public class Eater : MonoBehaviour
         }
         return true; // All corners are inside
     }
-    private void OnDrawGizmos()
-    {
-        GUIStyle style = new GUIStyle();
-        style.normal.textColor = Color.green;
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, transform.localScale.x);
-        Handles.Label(transform.position, transform.localScale.x.ToString(),style);
-        
-    }
     Vector3[] GetBoundsCorners(Bounds bounds)
     {
         Vector3 min = bounds.min;
@@ -138,5 +129,19 @@ public class Eater : MonoBehaviour
         //m_eatCollider.radius += .5f;
         transform.localScale += Vector3.one * 0.005f;
         m_softBodySphere.Grow();
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, transform.localScale.x);
+#if UNITY_EDITOR
+        // Create a custom GUI style
+        GUIStyle style = new GUIStyle();
+        style.normal.textColor = Color.green;
+        style.fontSize = 12; // You can customize the font size if needed
+
+        // Draw the text label at the object's position plus an offset
+        Handles.Label(transform.position, transform.localScale.x.ToString(), style);
+#endif
     }
 }
