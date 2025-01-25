@@ -57,10 +57,10 @@ public class PlayerInputs : MonoBehaviour
         {
             return;
         }
-        Vector3 dir = m_playerForwardTransform.TransformDirection(m_movement) * m_movementSpeed;
+        //Vector3 dir = m_playerForwardTransform.TransformDirection(m_movement) * m_movementSpeed;
         for (int i = 0; i < m_softBodySphere.spawnedRigidbodies.Count; i++)
         {
-            m_softBodySphere.spawnedRigidbodies[i].AddForce(dir);
+            m_softBodySphere.spawnedRigidbodies[i].AddForce(m_movement * m_movementSpeed * m_softBodySphere.GetScaleMultiplier());
         }
 
     }

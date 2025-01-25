@@ -14,7 +14,7 @@ public class Eatable : MonoBehaviour
 
     private void Update()
     {
-        if (isEaten)
+        if (isEaten && !isDigesting)
         {
             Eat();
         }
@@ -37,11 +37,7 @@ public class Eatable : MonoBehaviour
     }
 
     void Eat() {
-        if(isEaten)
-        {
-            isEaten = false;
-            isDigesting = true;
-        }
+        isDigesting = true;
         if (rb.useGravity) { 
             rb.useGravity = false;
             GetComponent<Collider>().enabled = false;

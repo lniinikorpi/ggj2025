@@ -13,6 +13,10 @@ public class Eater : MonoBehaviour
     private void Start()
     {
         m_softBodySphere = FindFirstObjectByType<SoftBodySphere>();
+        /*for(int i = 0; i < 100; i++)
+        {
+            GrowBlob();
+        }*/
     }
 
     private void Update()
@@ -84,6 +88,11 @@ public class Eater : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("NotEatable"))
+        {
+            return;
+        }
+        Eatable eatable = other.GetComponent<Eatable>();
+        if (eatable == null || eatable.isEaten)
         {
             return;
         }

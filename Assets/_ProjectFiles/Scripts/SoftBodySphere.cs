@@ -27,10 +27,16 @@ public class SoftBodySphere : MonoBehaviour
     [SerializeField] float m_jointLengthTarget = .1f;
     [SerializeField] float m_springForceTarget = 4f;
     [SerializeField] float m_scaleTarget = .6f;
+    [SerializeField] float m_massTarget = 1f;
     [SerializeField] float growthspeed = 0;
     [SerializeField] float springlength = 0;
     [SerializeField] float ballscale = 0;
+    [SerializeField] float massScale = 0;
     private bool m_isGrowing = false;
+
+    public float GetScaleMultiplier() { 
+        return m_massTarget;
+    }
 
 
     void Start()
@@ -81,7 +87,7 @@ public class SoftBodySphere : MonoBehaviour
                 }
                 SpringJoint joint = obj.AddComponent<SpringJoint>();
                 joint.spring = m_springForceTarget;
-                joint.damper = 0.1f;
+                joint.damper = 0.01f;
                 joint.minDistance = m_jointLengthTarget;
                 joint.maxDistance = m_jointLengthTarget;
                 joint.connectedBody = obj2.GetComponent<Rigidbody>();
@@ -92,6 +98,10 @@ public class SoftBodySphere : MonoBehaviour
         m_eater.followPosition = CalculateCenterOfPoints();
         m_eater.SetSize(sphereRadius);
         //SetupMeshRenderer();
+        /*for(int i = 0; i < 100; i++)
+        {
+            Grow();
+        }*/
     }
 
     Vector3 CalculateCenterOfPoints()
@@ -107,9 +117,10 @@ public class SoftBodySphere : MonoBehaviour
     }
 
     public void Grow() {
-        m_jointLengthTarget += springlength;
-        m_springForceTarget *= growthspeed;
+        m_jointLengthTarget *= springlength;
+        m_springForceTarget *= growthspeed * growthspeed;
         m_scaleTarget *= ballscale;
+        m_massTarget *= massScale;
         if (m_isGrowing)
         {
             return;
@@ -157,6 +168,17 @@ public class SoftBodySphere : MonoBehaviour
                 else
                 {
                     obj.transform.localScale = Vector3.one * m_scaleTarget;
+                }
+            }
+            foreach (var rb in spawnedRigidbodies)
+            {
+                if (rb.mass < m_massTarget)
+                {
+                    rb.mass += step;
+                    isScaled = false;
+                }
+                else { 
+                    rb.mass = m_massTarget;
                 }
             }
             yield return new WaitForSeconds(.1f);
