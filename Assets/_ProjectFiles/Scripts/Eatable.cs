@@ -12,7 +12,11 @@ public class Eatable : MonoBehaviour
     public float arbitarySize = .5f;
 
     public Action OnEaten;
-
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, arbitarySize);
+    }
     private void Update()
     {
         if (isEaten && !isDigesting)

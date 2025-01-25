@@ -151,3 +151,4 @@ MonoBehaviour:
   isEaten: 0
   followTarget: {fileID: 0}
   rb: {fileID: 7119961662789195967}
+  arbitarySize: 1

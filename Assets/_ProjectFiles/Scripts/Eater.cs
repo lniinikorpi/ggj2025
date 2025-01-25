@@ -1,6 +1,8 @@
 using NUnit.Framework;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Eater : MonoBehaviour
 {
@@ -87,7 +89,16 @@ public class Eater : MonoBehaviour
         }
         return true; // All corners are inside
     }
+    private void OnDrawGizmos()
+    {
+        GUIStyle style = new GUIStyle();
+        style.normal.textColor = Color.green;
 
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, transform.localScale.x);
+        Handles.Label(transform.position, transform.localScale.x.ToString(),style);
+        
+    }
     Vector3[] GetBoundsCorners(Bounds bounds)
     {
         Vector3 min = bounds.min;
