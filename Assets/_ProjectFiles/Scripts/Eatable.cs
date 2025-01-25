@@ -10,6 +10,8 @@ public class Eatable : MonoBehaviour
     private Rigidbody rb;
     private bool isDigesting = false;
 
+    public Action OnEaten;
+
     private void Update()
     {
         if (isEaten)
@@ -23,6 +25,8 @@ public class Eatable : MonoBehaviour
             rb.linearVelocity = Vector3.zero;
             if (transform.localScale.x < 0.1f)
             {
+                OnEaten?.Invoke();
+                OnEaten = null;
                 Destroy(gameObject);
             }
             else
