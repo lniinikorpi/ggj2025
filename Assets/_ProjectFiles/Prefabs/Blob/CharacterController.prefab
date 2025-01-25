@@ -154,7 +154,7 @@ Transform:
   m_GameObject: {fileID: 1053573393365060481}
   serializedVersion: 2
   m_LocalRotation: {x: 0.20690839, y: -0.035123732, z: 0.0074331425, w: 0.9777014}
-  m_LocalPosition: {x: 1.2, y: 7, z: -18.57}
+  m_LocalPosition: {x: 1.2, y: 7.41, z: -16.68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -339,6 +339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc74385bb505f344caebc4116307b36a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneTransition: {fileID: 7401781924861502893}
   EatToWinPercentage: 90
 --- !u!1 &1892303687444116719
 GameObject:

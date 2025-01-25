@@ -8,6 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_ProjectFiles/Scenes/Dev/KimDev_Charactercontroller.unity
     guid: 34f18f2e77fb31649baa2ee9ea1b42c3
+  - enabled: 1
+    path: Assets/_ProjectFiles/Scenes/ParkScene.unity
+    guid: e29c3593c3d4f694090039b821790e50
+  - enabled: 1
+    path: Assets/_ProjectFiles/Scenes/CityScene.unity
+    guid: 5e5162f973dbc8c48a79af0a8221f0af
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
