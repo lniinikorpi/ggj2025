@@ -26,6 +26,7 @@ public class Eatable : MonoBehaviour
             if (transform.localScale.x < 0.1f)
             {
                 OnEaten?.Invoke();
+                OnEaten = null;
                 Destroy(gameObject);
             }
             else

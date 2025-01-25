@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ public class SoftBodySphere : MonoBehaviour
 
     GameObject[] spawnedObjects;
     public List<Rigidbody> spawnedRigidbodies;
+    public List<SpringJoint> spawnedJoints;
     private Mesh mesh;
     private bool isSpawned = false;
 
@@ -21,6 +23,12 @@ public class SoftBodySphere : MonoBehaviour
     [SerializeField]
     private GameObject m_eaterPrefab;
     private Eater m_eater;
+
+    private float m_jointLengthTarget = .1f;
+    private float m_springForceTarget = 4f;
+    private float m_scaleTarget = .6f;
+
+    private bool m_isGrowing = false;
 
 
     void Start()
@@ -70,9 +78,12 @@ public class SoftBodySphere : MonoBehaviour
                     continue;
                 }
                 SpringJoint joint = obj.AddComponent<SpringJoint>();
-                joint.spring = 2;
+                joint.spring = m_springForceTarget;
                 joint.damper = 0.1f;
+                joint.minDistance = m_jointLengthTarget;
+                joint.maxDistance = m_jointLengthTarget;
                 joint.connectedBody = obj2.GetComponent<Rigidbody>();
+                spawnedJoints.Add(joint);
             }
         }
         m_eater = Instantiate(m_eaterPrefab, transform.position, Quaternion.identity).GetComponent<Eater>();
@@ -166,6 +177,68 @@ public class SoftBodySphere : MonoBehaviour
         }
 
         return sum / spawnedObjects.Length;  // Average the points
+    }
+
+    public void Grow() {
+        m_jointLengthTarget += 1f;
+        m_springForceTarget *= 2f;
+        m_scaleTarget *= 1.1f;
+        if (m_isGrowing)
+        {
+            return;
+        }
+        else { 
+            StartCoroutine(GrowCoroutine());
+        }
+    }
+
+    IEnumerator GrowCoroutine()
+    {
+        while (true)
+        {
+            bool isScaled = true;
+            float step = 3 * Time.deltaTime;
+            foreach (var joint in spawnedJoints)
+            {
+                if (joint.spring < m_springForceTarget)
+                {
+                    joint.spring += step;
+                    isScaled = false;
+                }
+                else { 
+                    joint.spring = m_springForceTarget;
+                }
+                if(joint.maxDistance < m_jointLengthTarget)
+                {
+                    joint.maxDistance += step;
+                    joint.minDistance += step;
+                    isScaled = false;
+                }
+                else
+                {
+                    joint.maxDistance = m_jointLengthTarget;
+                    joint.minDistance = m_jointLengthTarget;
+                }
+            }
+            foreach (var obj in spawnedObjects)
+            {
+                if (obj.transform.localScale.x < m_scaleTarget)
+                {
+                    obj.transform.localScale += Vector3.one * step;
+                    isScaled = false;
+                }
+                else
+                {
+                    obj.transform.localScale = Vector3.one * m_scaleTarget;
+                }
+            }
+            yield return new WaitForSeconds(.1f);
+            if (isScaled)
+            {
+                m_isGrowing = false;
+                break;
+            }
+        }
     }
 
     private void Update()
