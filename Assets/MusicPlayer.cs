@@ -13,7 +13,7 @@ public class MusicPlayer : MonoBehaviour
 
     private void Awake()
     {
-        // Basic singleton check
+        // Singleton check
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -23,7 +23,7 @@ public class MusicPlayer : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        // Get or add an AudioSource
+        // Get or create an AudioSource
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
@@ -31,47 +31,50 @@ public class MusicPlayer : MonoBehaviour
         }
         audioSource.loop = true;
 
-        // Start playing *something* when first scene loads
-        SetMusicBySceneIndex(SceneManager.GetActiveScene().buildIndex);
+        // First scene's music
+        AudioClip initialClip = GetMusicBySceneIndex(SceneManager.GetActiveScene().buildIndex);
+        audioSource.clip = initialClip;
         audioSource.Play();
     }
 
     private void OnEnable()
     {
-        // Subscribe to sceneLoaded event
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable()
     {
-        // Unsubscribe to avoid memory leaks / errors
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    /// <summary>
-    /// Called by SceneManager when a new scene is loaded.
-    /// </summary>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Choose and set the new music clip based on the newly loaded scene
-        SetMusicBySceneIndex(scene.buildIndex);
-        audioSource.Play();
+        // Determine which clip should play
+        AudioClip newClip = GetMusicBySceneIndex(scene.buildIndex);
+
+        // Only switch tracks if it’s different
+        if (audioSource.clip != newClip)
+        {
+            audioSource.clip = newClip;
+            audioSource.Play(); // restart from the beginning
+        }
+        // If it's the same clip, do nothing; let it continue playing
     }
 
     /// <summary>
-    /// Picks which clip to play based on a scene index.
+    /// Logic for mapping scene indices to the correct AudioClip.
     /// </summary>
-    /// <param name="sceneIndex">Scene's build index</param>
-    private void SetMusicBySceneIndex(int sceneIndex)
+    private AudioClip GetMusicBySceneIndex(int sceneIndex)
     {
-        // Replace with your own logic for which scenes get clip A or B
-        if (sceneIndex == 0|| sceneIndex == 2)
+        // EXAMPLE: Scenes 0 & 3 = clipB, others = clipA 
+        // You can adjust or extend as needed
+        if (sceneIndex == 0 || sceneIndex == 3)
         {
-            audioSource.clip = clipB;
+            return clipB;
         }
         else
         {
-            audioSource.clip = clipA;
+            return clipA;
         }
     }
 }

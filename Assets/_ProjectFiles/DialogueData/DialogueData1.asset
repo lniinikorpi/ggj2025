@@ -14,35 +14,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - characterData: {fileID: 0}
-    text: "Listen up, rookie. Name\u2019s [Boss\u2019s Name], but you\u2019ll call
-      me \u201CBoss.\u201D And you are the newest recruit in our little cosmic custodial
-      service. "
+    text: "Listen up, rookie. Name\u2019s Kip, but you\u2019ll call me \u201CBoss.\u201D
+      And you are the newest recruit in our little cosmic custodial service."
     extendPrevious: 0
   - characterData: {fileID: 0}
-    text: "Interstellar Cleanup might not sound glamorous, but trust me\u2014when
-      entire star systems are counting on you to purify their worlds, you learn real
-      quick how vital this job is."
+    text: Interstellar Cleanup might not sound glamorous, but trust me... When entire
+      star systems are counting on you to purify their worlds, you learn real quick
+      how important this job is.
     extendPrevious: 0
   - characterData: {fileID: 0}
-    text: " We start from the inside out. We handle things at the cellular level
-      first\u2014that\u2019s the micro cleanup. Space viruses, bacterial infestations,
-      parasitic spores\u2026 all that fun stuff. We clear it, scrub it, sanitize
-      it until not a single microbe remains."
+    text: "We start from inside out. Handle things at the cellular level first. That\u2019s
+      the micro cleanup. Space viruses, bacterial infestations, parasitic spores\u2026
+      all that fun stuff. We clear it, scrub it, sanitize it until not a single microbe
+      remains."
     extendPrevious: 0
   - characterData: {fileID: 0}
-    text: "If there\u2019s bigger trouble\u2014say, toxic oceans, radioactive crust,
-      or entire continents choking on pollution\u2014we go in deeper. We keep going,
-      layer by layer, level by level, until there isn\u2019t a single speck of filth
-      left in the entire star system."
+    text: "If there\u2019s bigger trouble... Say, general trash, crust, or entire
+      continents choking on poop, we go in deeper. Layer by layer, level by level,
+      until there isn\u2019t a single speck of filth left in the entire star system."
     extendPrevious: 0
   - characterData: {fileID: 0}
     text: "Welcome to the life of an Interstellar Cleanup Specialist. Nobody else
-      can do what we do. We get the call whenever some backwater planet or even a
-      high-tech civilization can\u2019t handle its own mess. And we always answer."
+      can do what you do. We get the call whenever some backwater planet or even
+      a high-tech civilization can\u2019t handle its own mess. And we always answer."
     extendPrevious: 0
   - characterData: {fileID: 0}
     text: "Gear up and brace yourself. We\u2019re diving straight into the thick
-      of it. This is where legends are made\u2014or where recruits wash out. Let\u2019s
+      of it. This is where legends are made.... or where recruits wash out. Let\u2019s
       do this right."
     extendPrevious: 0
   Name: Bossman
