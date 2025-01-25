@@ -38,7 +38,11 @@ public class Eater : MonoBehaviour
                 }
                 eater.isEaten = true;
                 eater.followTarget = transform;
-                eater.OnEaten += GrowBlob;
+                eater.OnEaten += () =>
+                {
+                    GrowBlob();
+                    GameManager.Instance.RemoveEatable(eater);
+                };
                 eated.Add(collider);
             }
             foreach (var eaten in eated)
