@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7583806522321086124}
   m_Layer: 0
   m_Name: PlainSphere
-  m_TagString: Untagged
+  m_TagString: NotEatable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

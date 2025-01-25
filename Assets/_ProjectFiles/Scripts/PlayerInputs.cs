@@ -18,8 +18,6 @@ public class PlayerInputs : MonoBehaviour
     float m_pitch = 0f;
     float m_yaw = 0f;
 
-    Vector3 dir = Vector3.zero;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

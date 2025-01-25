@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1053573393365060481}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.2927028, y: -0.047626484, z: 0.014598732, w: 0.9549051}
   m_LocalPosition: {x: 0.5, y: 3.4, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -278,6 +278,7 @@ MonoBehaviour:
   meshMaterial: {fileID: 2100000, guid: d466fdb999b87f74f8fa310373d1411e, type: 2}
   spawnedRigidbodies: []
   m_cameraTarget: {fileID: 4660946491060666036}
+  m_eaterPrefab: {fileID: 7838812214534019472, guid: e3894bdee320fa94f8eb17a2a8bc6b26, type: 3}
 --- !u!114 &1606574896897383844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -521,7 +522,7 @@ Transform:
   m_GameObject: {fileID: 4743824680376144890}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.41, z: -1.89}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

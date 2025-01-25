@@ -21,7 +21,9 @@ public class SoftBodySphere : MonoBehaviour
     [SerializeField]
     private Transform m_cameraTarget;
 
-    private Vector3 m_center;
+    [SerializeField]
+    private GameObject m_eaterPrefab;
+    private Eater m_eater;
 
 
     void Start()
@@ -76,6 +78,9 @@ public class SoftBodySphere : MonoBehaviour
                 joint.connectedBody = obj2.GetComponent<Rigidbody>();
             }
         }
+        m_eater = Instantiate(m_eaterPrefab, transform.position, Quaternion.identity).GetComponent<Eater>();
+        m_eater.followPosition = CalculateCenterOfPoints();
+        m_eater.SetSize(sphereRadius);
         //SetupMeshRenderer();
     }
     void UpdateMeshFromObjects()
@@ -170,7 +175,9 @@ public class SoftBodySphere : MonoBehaviour
     {
         if (isSpawned) { 
             //UpdateMeshFromObjects();
-            m_cameraTarget.position = CalculateCenterOfPoints();
+            Vector3 center = CalculateCenterOfPoints();
+            m_cameraTarget.position = center;
+            m_eater.followPosition = center;
         }
     }
 
