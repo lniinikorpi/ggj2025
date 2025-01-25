@@ -77,6 +77,7 @@ MonoBehaviour:
   isEaten: 0
   followTarget: {fileID: 0}
   arbitarySize: 1.75
+  m_randomYRotation: 1
 --- !u!65 &5529127077318592570
 BoxCollider:
   m_ObjectHideFlags: 0
