@@ -7,7 +7,13 @@ public class Eater : MonoBehaviour
     public Vector3 followPosition;
     [SerializeField]
     private SphereCollider m_eatCollider;
+    private SoftBodySphere m_softBodySphere;
     List<Collider> m_toBeEatenColliders = new List<Collider>();
+
+    private void Start()
+    {
+        m_softBodySphere = FindFirstObjectByType<SoftBodySphere>();
+    }
 
     private void Update()
     {
@@ -84,6 +90,8 @@ public class Eater : MonoBehaviour
         m_toBeEatenColliders.Add(other);
     }
 
-    private void GrowBlob() { 
+    private void GrowBlob() {
+        m_eatCollider.radius += .5f;
+        m_softBodySphere.Grow();
     }
 }
