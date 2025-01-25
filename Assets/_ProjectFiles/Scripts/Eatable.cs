@@ -1,5 +1,8 @@
 using System;
 using System.Collections;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 
 public class Eatable : MonoBehaviour
@@ -47,5 +50,20 @@ public class Eatable : MonoBehaviour
             rb.useGravity = false;
             GetComponent<Collider>().enabled = false;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, arbitarySize);
+#if UNITY_EDITOR
+        // Create a custom GUI style
+        GUIStyle style = new GUIStyle();
+        style.normal.textColor = Color.green;
+        style.fontSize = 12; // You can customize the font size if needed
+
+        // Draw the text label at the object's position plus an offset
+        Handles.Label(transform.position, arbitarySize.ToString(), style);
+#endif
     }
 }

@@ -76,7 +76,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEaten: 0
   followTarget: {fileID: 0}
-  arbitarySize: 0.5
+  arbitarySize: 1.6
 --- !u!65 &3816729941276656352
 BoxCollider:
   m_ObjectHideFlags: 0
