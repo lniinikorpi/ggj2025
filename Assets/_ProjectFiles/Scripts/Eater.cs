@@ -8,7 +8,7 @@ public class Eater : MonoBehaviour
     [SerializeField]
     private SphereCollider m_eatCollider;
     private SoftBodySphere m_softBodySphere;
-    List<Collider> m_toBeEatenColliders = new List<Collider>();
+    List<Eatable> m_toBeEaten = new List<Eatable>();
 
     private void Start()
     {
@@ -22,30 +22,46 @@ public class Eater : MonoBehaviour
     private void Update()
     {
         transform.position = followPosition;
-        if (m_toBeEatenColliders.Count > 0) {
-            List<Collider> eatenColliders = new List<Collider>();
-            foreach (var collider in m_toBeEatenColliders)
+        if (m_toBeEaten.Count > 0) {
+            List<Eatable> eated = new List<Eatable>();
+            foreach (var collider in m_toBeEaten)
             {
-                if (!IsColliderFullyInside(collider))
+                Eatable eater = collider.GetComponent<Eatable>();
+                /*if (!IsColliderFullyInside(collider))
                 {
                     continue;
+                }*/
+                if(!IsInside(eater))
+                {
+                    eated.Add(collider);
+                    continue;
                 }
-
-                Eatable eater = collider.GetComponent<Eatable>();
                 eater.isEaten = true;
                 eater.followTarget = transform;
                 eater.OnEaten += GrowBlob;
-                eatenColliders.Add(collider);
+                eated.Add(collider);
             }
-            foreach (var collider in eatenColliders)
+            foreach (var eaten in eated)
             {
-                m_toBeEatenColliders.Remove(collider);
+                m_toBeEaten.Remove(eaten);
             }
         }
     }
 
     public void SetSize(float size) {
         m_eatCollider.radius = size;
+    }
+
+    bool IsInside(Eatable eatable) { 
+        if(eatable == null)
+        {
+            return false;
+        }
+        if(eatable.arbitarySize < transform.localScale.x)
+        {
+            return true;
+        }
+        return false;
     }
 
     bool IsColliderFullyInside(Collider eatCollider)
@@ -96,7 +112,11 @@ public class Eater : MonoBehaviour
         {
             return;
         }
-        m_toBeEatenColliders.Add(other);
+        if(m_toBeEaten.Contains(eatable))
+        {
+            return;
+        }
+        m_toBeEaten.Add(eatable);
     }
 
     private void GrowBlob() {
