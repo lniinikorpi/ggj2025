@@ -1,8 +1,6 @@
-using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class SoftBodySphere : MonoBehaviour
 {
@@ -14,13 +12,32 @@ public class SoftBodySphere : MonoBehaviour
     public Material meshMaterial;
 
     GameObject[] spawnedObjects;
+    public List<Rigidbody> spawnedRigidbodies;
+    public List<SpringJoint> spawnedJoints;
     private Mesh mesh;
     private bool isSpawned = false;
+
+    [SerializeField]
+    private Transform m_cameraTarget;
+
+    [SerializeField]
+    private GameObject m_eaterPrefab;
+    private Eater m_eater;
+
+    [SerializeField] float m_jointLengthTarget = .1f;
+    [SerializeField] float m_springForceTarget = 4f;
+    [SerializeField] float m_scaleTarget = .6f;
+    [SerializeField] float growthspeed = 0;
+    [SerializeField] float springlength = 0;
+    [SerializeField] float ballscale = 0;
+    private bool m_isGrowing = false;
 
 
     void Start()
     {
         mesh = new Mesh();
+        SpawnObjectsInSphere();
+        isSpawned = true;
     }
 
    void SpawnObjectsInSphere()
@@ -52,6 +69,7 @@ public class SoftBodySphere : MonoBehaviour
         foreach (GameObject obj in spawnedObjects)
         {
             obj.AddComponent<Rigidbody>();
+            spawnedRigidbodies.Add(obj.GetComponent<Rigidbody>());
         }
         foreach (GameObject obj in spawnedObjects)
         {
@@ -62,103 +80,101 @@ public class SoftBodySphere : MonoBehaviour
                     continue;
                 }
                 SpringJoint joint = obj.AddComponent<SpringJoint>();
-                joint.spring = 2;
+                joint.spring = m_springForceTarget;
                 joint.damper = 0.1f;
+                joint.minDistance = m_jointLengthTarget;
+                joint.maxDistance = m_jointLengthTarget;
                 joint.connectedBody = obj2.GetComponent<Rigidbody>();
+                spawnedJoints.Add(joint);
             }
         }
-        SetupMeshRenderer();
+        m_eater = Instantiate(m_eaterPrefab, transform.position, Quaternion.identity).GetComponent<Eater>();
+        m_eater.followPosition = CalculateCenterOfPoints();
+        m_eater.SetSize(sphereRadius);
+        //SetupMeshRenderer();
     }
-    void UpdateMeshFromObjects()
+
+    Vector3 CalculateCenterOfPoints()
     {
-        // Collect positions of all spawned objects
-        Vector3[] vertices = new Vector3[spawnedObjects.Length];
-        for (int i = 0; i < spawnedObjects.Length; i++)
+        Vector3 sum = Vector3.zero;
+        foreach (GameObject go in spawnedObjects)
         {
-            vertices[i] = spawnedObjects[i].transform.position - transform.position;
+            Vector3 point = go.transform.position;
+            sum += point;
         }
 
-        // Generate triangles using a simple method
-        int[] triangles = GenerateTriangles(vertices);
-
-        // Update the mesh with vertices and triangles
-        mesh.Clear();
-        mesh.vertices = vertices;
-        mesh.triangles = triangles;
-        mesh.RecalculateNormals();  // Ensure correct lighting
-        mesh.RecalculateBounds();
-
-        // Assign the mesh to the MeshFilter
-        GetComponent<MeshFilter>().mesh = mesh;
+        return sum / spawnedObjects.Length;  // Average the points
     }
-    int[] GenerateTriangles(Vector3[] vertices)
-    {
-        if (vertices.Length < 3) return new int[0];
 
-        int numLatitudeBands = Mathf.RoundToInt(Mathf.Sqrt(vertices.Length)); // Number of latitude bands (rows)
-        int numLongitudeBands = Mathf.RoundToInt(vertices.Length / (float)numLatitudeBands); // Number of longitude bands (columns)
-
-        List<int> triangles = new List<int>();
-
-        // Loop through the latitude bands
-        for (int lat = 0; lat < numLatitudeBands - 1; lat++)
+    public void Grow() {
+        m_jointLengthTarget += springlength;
+        m_springForceTarget *= growthspeed;
+        m_scaleTarget *= ballscale;
+        if (m_isGrowing)
         {
-            for (int lon = 0; lon < numLongitudeBands; lon++)
+            return;
+        }
+        else { 
+            StartCoroutine(GrowCoroutine());
+        }
+    }
+
+    IEnumerator GrowCoroutine()
+    {
+        while (true)
+        {
+            bool isScaled = true;
+            float step = 3 * Time.fixedDeltaTime;
+            foreach (var joint in spawnedJoints)
             {
-                int current = lat * numLongitudeBands + lon;
-                int nextLon = (lon + 1) % numLongitudeBands; // Wrap around horizontally for the last longitude
-
-                // Triangle 1: current, nextLon + nextRow, current + nextLon
-                int nextRow = (lat + 1) * numLongitudeBands + lon; // Vertex below current
-                int nextRowNextLon = nextRow + nextLon - lon; // Diagonal vertex below
-
-                // Add first triangle
-                triangles.Add(current);
-                triangles.Add(nextRow);
-                triangles.Add(nextRowNextLon);
-
-                // Add second triangle (using the same vertices)
-                triangles.Add(current);
-                triangles.Add(nextRowNextLon);
-                triangles.Add(current + nextLon);
+                if (joint.spring < m_springForceTarget)
+                {
+                    joint.spring += step;
+                    isScaled = false;
+                }
+                else { 
+                    joint.spring = m_springForceTarget;
+                }
+                if(joint.maxDistance < m_jointLengthTarget)
+                {
+                    joint.maxDistance += step;
+                    joint.minDistance += step;
+                    isScaled = false;
+                }
+                else
+                {
+                    joint.maxDistance = m_jointLengthTarget;
+                    joint.minDistance = m_jointLengthTarget;
+                }
             }
-        }
-
-        return triangles.ToArray();
-    }
-
-    void SetupMeshRenderer()
-    {
-        // Attach a MeshRenderer and assign a material to make the mesh visible
-        MeshRenderer renderer = GetComponent<MeshRenderer>();
-        if (renderer == null)
-        {
-            renderer = gameObject.AddComponent<MeshRenderer>();
-        }
-        renderer.material = meshMaterial;
-
-        // Attach a MeshFilter if not already present
-        MeshFilter filter = GetComponent<MeshFilter>();
-        if (filter == null)
-        {
-            gameObject.AddComponent<MeshFilter>();
+            foreach (var obj in spawnedObjects)
+            {
+                if (obj.transform.localScale.x < m_scaleTarget)
+                {
+                    obj.transform.localScale += Vector3.one * step;
+                    isScaled = false;
+                }
+                else
+                {
+                    obj.transform.localScale = Vector3.one * m_scaleTarget;
+                }
+            }
+            yield return new WaitForSeconds(.1f);
+            if (isScaled)
+            {
+                m_isGrowing = false;
+                break;
+            }
         }
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            /*foreach (GameObject obj in spawnedObjects)
-            {
-                Destroy(obj);
-            }*/
-            //spawnedObjects.Clear();
-            SpawnObjectsInSphere();
-            isSpawned = true;
-        }
         if (isSpawned) { 
-            UpdateMeshFromObjects();
+            //UpdateMeshFromObjects();
+            Vector3 center = CalculateCenterOfPoints();
+            m_cameraTarget.position = center;
+            m_eater.followPosition = center;
         }
     }
 
