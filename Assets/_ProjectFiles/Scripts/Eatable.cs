@@ -9,6 +9,7 @@ public class Eatable : MonoBehaviour
     [SerializeField]
     private Rigidbody rb;
     private bool isDigesting = false;
+    public float arbitarySize = .5f;
 
     public Action OnEaten;
 
