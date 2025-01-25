@@ -1606,6 +1606,31 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 029db081a05226e4b98f8a2836b9aa92, type: 3}
+--- !u!1 &240308885 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7310722488324508448, guid: c6e56be8e7a93ac44b6851857379c939, type: 3}
+  m_PrefabInstance: {fileID: 1103411449}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &240308886 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 7119961662789195967, guid: c6e56be8e7a93ac44b6851857379c939, type: 3}
+  m_PrefabInstance: {fileID: 1103411449}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &240308891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240308885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f4a2dbcb2b750342b34f4e797953a87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEaten: 0
+  followTarget: {fileID: 0}
+  rb: {fileID: 240308886}
 --- !u!1001 &253204771
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6679,7 +6704,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7310722488324508448, guid: c6e56be8e7a93ac44b6851857379c939, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 240308891}
   m_SourcePrefab: {fileID: 100100000, guid: c6e56be8e7a93ac44b6851857379c939, type: 3}
 --- !u!1001 &1107156723
 PrefabInstance:
@@ -12148,15 +12176,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8385932541495589292, guid: e20051fbcd0c3f240b3761bbc2da3b3a, type: 3}
       propertyPath: ballscale
-      value: 1.001
-      objectReference: {fileID: 0}
-    - target: {fileID: 8385932541495589292, guid: e20051fbcd0c3f240b3761bbc2da3b3a, type: 3}
-      propertyPath: growthspeed
       value: 1.0001
       objectReference: {fileID: 0}
     - target: {fileID: 8385932541495589292, guid: e20051fbcd0c3f240b3761bbc2da3b3a, type: 3}
+      propertyPath: massScale
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8385932541495589292, guid: e20051fbcd0c3f240b3761bbc2da3b3a, type: 3}
+      propertyPath: numObjects
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8385932541495589292, guid: e20051fbcd0c3f240b3761bbc2da3b3a, type: 3}
+      propertyPath: growthspeed
+      value: 1.015
+      objectReference: {fileID: 0}
+    - target: {fileID: 8385932541495589292, guid: e20051fbcd0c3f240b3761bbc2da3b3a, type: 3}
       propertyPath: springlength
-      value: 0.005
+      value: 1.02
       objectReference: {fileID: 0}
     - target: {fileID: 8385932541495589292, guid: e20051fbcd0c3f240b3761bbc2da3b3a, type: 3}
       propertyPath: m_scaleTarget
