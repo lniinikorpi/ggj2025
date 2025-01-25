@@ -12,12 +12,18 @@ public class Eatable : MonoBehaviour
     private Rigidbody rb;
     private bool isDigesting = false;
     public float arbitarySize = .5f;
+    [SerializeField]
+    private bool m_randomYRotation = false;
 
     public Action OnEaten;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        if(m_randomYRotation)
+        {
+            transform.rotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0);
+        }
     }
 
     private void Update()

@@ -76,7 +76,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEaten: 0
   followTarget: {fileID: 0}
-  arbitarySize: 0.5
+  arbitarySize: 0.3
+  m_randomYRotation: 1
 --- !u!65 &-8754920421136886470
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -96,8 +97,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.7456167, y: 0.5997204, z: 0.8260467}
-  m_Center: {x: -0.0037409067, y: -0.0037409365, z: -0.0065466166}
+  m_Size: {x: 0.6626754, y: 0.5412537, z: 0.7172713}
+  m_Center: {x: 0.037729725, y: 0.02549243, z: 0.01248908}
 --- !u!1001 &4435231477496744715
 PrefabInstance:
   m_ObjectHideFlags: 0
