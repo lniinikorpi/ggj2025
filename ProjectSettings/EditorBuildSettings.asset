@@ -12,8 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Space.unity
     guid: af37aec475db55b469be83e78c1388e5
   - enabled: 1
+    path: Assets/_ProjectFiles/Scenes/Dev/CutScene1.unity
+    guid: 4b79d609a43818446a3075788dc25b68
+  - enabled: 1
     path: Assets/_ProjectFiles/Scenes/CafeScene.unity
     guid: 34f18f2e77fb31649baa2ee9ea1b42c3
+  - enabled: 1
+    path: Assets/_ProjectFiles/Scenes/Dev/CutScene2.unity
+    guid: d50f757d228f459439c2af1ba7d52894
   - enabled: 1
     path: Assets/_ProjectFiles/Scenes/ParkScene.unity
     guid: e29c3593c3d4f694090039b821790e50

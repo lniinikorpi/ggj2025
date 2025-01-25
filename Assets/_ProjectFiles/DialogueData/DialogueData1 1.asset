@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62eb2c1b130869f42a8b2a4f695f9ecd, type: 3}
+  m_Name: DialogueData1 1
+  m_EditorClassIdentifier: 
+  dialogues:
+  - characterData: {fileID: 0}
+    text: "Alright, rookie. We\u2019ve scrubbed the micro-level contaminants down
+      to the last molecule. I mean, look at this place.. Our scanners are squeaky-clean. "
+    extendPrevious: 0
+  - characterData: {fileID: 0}
+    text: "But... (boss shakes head) it\u2019s not enough."
+    extendPrevious: 0
+  - characterData: {fileID: 0}
+    text: "Sometimes the real filth ain\u2019t microscopic. Sometimes it\u2019s people,
+      or at least the places they congregate. And our intel says the heart of this
+      whole mess is something called the Caf\xE9 of FILTH."
+    extendPrevious: 0
+  - characterData: {fileID: 0}
+    text: "We go straight to the source and purify it at its root. Our fancy molecular
+      cleanup\u2019s useless if they\u2019re pumping out fresh sludge by the hour.
+      We shut down their operation, we shut down the filth permanently."
+    extendPrevious: 0
+  - characterData: {fileID: 0}
+    text: "This isn\u2019t just another cleanup job anymore. It\u2019s a showdown.
+      Pack your gear and watch your back. Because inside the Caf\xE9 of FILTH... "
+    extendPrevious: 0
+  - characterData: {fileID: 0}
+    text: "everything is dirty and you can bet you won\u2019t be able to REACH ALL
+      THE PLACES without a fight."
+    extendPrevious: 0
+  Name: Bossman
+  ID: 
