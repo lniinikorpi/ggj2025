@@ -91,7 +91,8 @@ public class Eater : MonoBehaviour
     }
 
     private void GrowBlob() {
-        m_eatCollider.radius += .5f;
+        //m_eatCollider.radius += .5f;
+        transform.localScale += Vector3.one * 0.005f;
         m_softBodySphere.Grow();
     }
 }

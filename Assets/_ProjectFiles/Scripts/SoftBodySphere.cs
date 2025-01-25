@@ -24,10 +24,12 @@ public class SoftBodySphere : MonoBehaviour
     private GameObject m_eaterPrefab;
     private Eater m_eater;
 
-    private float m_jointLengthTarget = .1f;
-    private float m_springForceTarget = 4f;
-    private float m_scaleTarget = .6f;
-
+    [SerializeField] float m_jointLengthTarget = .1f;
+    [SerializeField] float m_springForceTarget = 4f;
+    [SerializeField] float m_scaleTarget = .6f;
+    [SerializeField] float growthspeed = 0;
+    [SerializeField] float springlength = 0;
+    [SerializeField] float ballscale = 0;
     private bool m_isGrowing = false;
 
 
@@ -91,81 +93,6 @@ public class SoftBodySphere : MonoBehaviour
         m_eater.SetSize(sphereRadius);
         //SetupMeshRenderer();
     }
-    void UpdateMeshFromObjects()
-    {
-        // Collect positions of all spawned objects
-        Vector3[] vertices = new Vector3[spawnedObjects.Length];
-        for (int i = 0; i < spawnedObjects.Length; i++)
-        {
-            vertices[i] = spawnedObjects[i].transform.position - transform.position;
-        }
-
-        // Generate triangles using a simple method
-        int[] triangles = GenerateTriangles(vertices);
-
-        // Update the mesh with vertices and triangles
-        mesh.Clear();
-        mesh.vertices = vertices;
-        mesh.triangles = triangles;
-        mesh.RecalculateNormals();  // Ensure correct lighting
-        mesh.RecalculateBounds();
-
-        // Assign the mesh to the MeshFilter
-        GetComponent<MeshFilter>().mesh = mesh;
-    }
-    int[] GenerateTriangles(Vector3[] vertices)
-    {
-        if (vertices.Length < 3) return new int[0];
-
-        int numLatitudeBands = Mathf.RoundToInt(Mathf.Sqrt(vertices.Length)); // Number of latitude bands (rows)
-        int numLongitudeBands = Mathf.RoundToInt(vertices.Length / (float)numLatitudeBands); // Number of longitude bands (columns)
-
-        List<int> triangles = new List<int>();
-
-        // Loop through the latitude bands
-        for (int lat = 0; lat < numLatitudeBands - 1; lat++)
-        {
-            for (int lon = 0; lon < numLongitudeBands; lon++)
-            {
-                int current = lat * numLongitudeBands + lon;
-                int nextLon = (lon + 1) % numLongitudeBands; // Wrap around horizontally for the last longitude
-
-                // Triangle 1: current, nextLon + nextRow, current + nextLon
-                int nextRow = (lat + 1) * numLongitudeBands + lon; // Vertex below current
-                int nextRowNextLon = nextRow + nextLon - lon; // Diagonal vertex below
-
-                // Add first triangle
-                triangles.Add(nextRow);
-                triangles.Add(current);
-                triangles.Add(nextRowNextLon);
-
-                // Add second triangle (using the same vertices)
-                triangles.Add(current);
-                triangles.Add(nextRowNextLon);
-                triangles.Add(current + nextLon);
-            }
-        }
-
-        return triangles.ToArray();
-    }
-
-    void SetupMeshRenderer()
-    {
-        // Attach a MeshRenderer and assign a material to make the mesh visible
-        MeshRenderer renderer = GetComponent<MeshRenderer>();
-        if (renderer == null)
-        {
-            renderer = gameObject.AddComponent<MeshRenderer>();
-        }
-        renderer.material = meshMaterial;
-
-        // Attach a MeshFilter if not already present
-        MeshFilter filter = GetComponent<MeshFilter>();
-        if (filter == null)
-        {
-            gameObject.AddComponent<MeshFilter>();
-        }
-    }
 
     Vector3 CalculateCenterOfPoints()
     {
@@ -180,9 +107,9 @@ public class SoftBodySphere : MonoBehaviour
     }
 
     public void Grow() {
-        m_jointLengthTarget += 1f;
-        m_springForceTarget *= 2f;
-        m_scaleTarget *= 1.1f;
+        m_jointLengthTarget += springlength;
+        m_springForceTarget *= growthspeed;
+        m_scaleTarget *= ballscale;
         if (m_isGrowing)
         {
             return;
@@ -197,7 +124,7 @@ public class SoftBodySphere : MonoBehaviour
         while (true)
         {
             bool isScaled = true;
-            float step = 3 * Time.deltaTime;
+            float step = 3 * Time.fixedDeltaTime;
             foreach (var joint in spawnedJoints)
             {
                 if (joint.spring < m_springForceTarget)
