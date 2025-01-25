@@ -6,12 +6,16 @@ public class Eatable : MonoBehaviour
 {
     public bool isEaten = false;
     public Transform followTarget;
-    [SerializeField]
     private Rigidbody rb;
     private bool isDigesting = false;
     public float arbitarySize = .5f;
 
     public Action OnEaten;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     private void Update()
     {

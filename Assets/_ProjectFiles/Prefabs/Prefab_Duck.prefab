@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 47817497276829526}
-  - component: {fileID: 4081223296184943754}
-  - component: {fileID: 2893493919758123184}
-  - component: {fileID: 2105636516095196472}
+  - component: {fileID: 7552521764598321940}
+  - component: {fileID: -1026094686723458082}
+  - component: {fileID: 5953595882769500931}
   m_Layer: 0
   m_Name: Prefab_Duck
   m_TagString: Untagged
@@ -35,7 +35,7 @@ Transform:
   - {fileID: 7019560921989190919}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &4081223296184943754
+--- !u!54 &7552521764598321940
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -62,7 +62,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2893493919758123184
+--- !u!114 &-1026094686723458082
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -76,8 +76,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEaten: 0
   followTarget: {fileID: 0}
-  rb: {fileID: 4081223296184943754}
---- !u!65 &2105636516095196472
+  arbitarySize: 0.5
+--- !u!65 &5953595882769500931
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,8 +96,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.25, y: 0.28, z: 0.25}
-  m_Center: {x: 0, y: 0.12, z: 0}
+  m_Size: {x: 0.23498014, y: 0.34159616, z: 0.393035}
+  m_Center: {x: 0, y: 0.14215536, z: 0}
 --- !u!1001 &7413140537585988332
 PrefabInstance:
   m_ObjectHideFlags: 0
