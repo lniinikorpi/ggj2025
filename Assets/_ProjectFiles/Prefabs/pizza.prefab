@@ -9,6 +9,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 402ee23546551cd4b8b311f63bf9ff9b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 402ee23546551cd4b8b311f63bf9ff9b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 402ee23546551cd4b8b311f63bf9ff9b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 402ee23546551cd4b8b311f63bf9ff9b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -48,6 +60,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 402ee23546551cd4b8b311f63bf9ff9b, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e65b054111dac264e94a8a1658c24703, type: 2}
     - target: {fileID: 919132149155446097, guid: 402ee23546551cd4b8b311f63bf9ff9b, type: 3}
       propertyPath: m_Name
       value: pizza
@@ -62,6 +78,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 402ee23546551cd4b8b311f63bf9ff9b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6653809361812837289}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 402ee23546551cd4b8b311f63bf9ff9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1376689563509597206}
   m_SourcePrefab: {fileID: 100100000, guid: 402ee23546551cd4b8b311f63bf9ff9b, type: 3}
 --- !u!1 &4431397156281713329 stripped
 GameObject:
@@ -117,3 +136,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &1376689563509597206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4431397156281713329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f4a2dbcb2b750342b34f4e797953a87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEaten: 0
+  followTarget: {fileID: 0}
+  rb: {fileID: 6653809361812837289}

@@ -83,7 +83,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AddPrecomputedVelocity: 0
-    - _Add_alpha: 0
+    - _Add_alpha: 0.12
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
@@ -97,11 +97,11 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _Divide_color: 1
+    - _Divide_color: 0.08
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _Fresnel_pow: 2.55
+    - _Fresnel_pow: 1.85
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
