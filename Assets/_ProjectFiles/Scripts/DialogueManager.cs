@@ -11,6 +11,7 @@ public class DialogueManager : MonoBehaviour
     //public Image leftCharacterImage;
     public CanvasGroup rightCanvasGroup;
     public CanvasGroup leftCanvasGroup;
+    [SerializeField] private SceneTransition sceneTransition;
     public TMP_Text textArea;
     //private CharacterData rightCharacter;
     //private CharacterData leftCharacter;
@@ -141,6 +142,7 @@ public class DialogueManager : MonoBehaviour
     {
         //InputEventSender.OnInputLeftClicked -= OnDialogueContinue;
         dialoguePanel.SetActive(false);
+        sceneTransition.StartTransitionOut();
         //rightCharacter = null;
         //rightCharacter = null;
     }

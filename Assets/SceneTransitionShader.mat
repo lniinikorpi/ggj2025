@@ -41,7 +41,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Progress: 0
+    - _Progress: 1
     m_Colors:
     - _TransitionColor: {r: 0.7686275, g: 0.9960785, b: 0.6745098, a: 0}
   m_BuildTextureStacks: []

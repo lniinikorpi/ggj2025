@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEaten: 0
-  followTarget: {fileID: 0}
+  followTarget: {fileID: 3333114282030629757}
   arbitarySize: 0.5
   m_randomYRotation: 1
 --- !u!65 &692489192007905998

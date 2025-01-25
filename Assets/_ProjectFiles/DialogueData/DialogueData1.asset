@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62eb2c1b130869f42a8b2a4f695f9ecd, type: 3}
+  m_Name: DialogueData1
+  m_EditorClassIdentifier: 
+  dialogues:
+  - characterData: {fileID: 0}
+    text: "Listen up, rookie. Name\u2019s [Boss\u2019s Name], but you\u2019ll call
+      me \u201CBoss.\u201D And you are the newest recruit in our little cosmic custodial
+      service. "
+    extendPrevious: 0
+  - characterData: {fileID: 0}
+    text: "Interstellar Cleanup might not sound glamorous, but trust me\u2014when
+      entire star systems are counting on you to purify their worlds, you learn real
+      quick how vital this job is."
+    extendPrevious: 0
+  - characterData: {fileID: 0}
+    text: " We start from the inside out. We handle things at the cellular level
+      first\u2014that\u2019s the micro cleanup. Space viruses, bacterial infestations,
+      parasitic spores\u2026 all that fun stuff. We clear it, scrub it, sanitize
+      it until not a single microbe remains."
+    extendPrevious: 0
+  - characterData: {fileID: 0}
+    text: "If there\u2019s bigger trouble\u2014say, toxic oceans, radioactive crust,
+      or entire continents choking on pollution\u2014we go in deeper. We keep going,
+      layer by layer, level by level, until there isn\u2019t a single speck of filth
+      left in the entire star system."
+    extendPrevious: 0
+  - characterData: {fileID: 0}
+    text: "Welcome to the life of an Interstellar Cleanup Specialist. Nobody else
+      can do what we do. We get the call whenever some backwater planet or even a
+      high-tech civilization can\u2019t handle its own mess. And we always answer."
+    extendPrevious: 0
+  - characterData: {fileID: 0}
+    text: "Gear up and brace yourself. We\u2019re diving straight into the thick
+      of it. This is where legends are made\u2014or where recruits wash out. Let\u2019s
+      do this right."
+    extendPrevious: 0
+  Name: Bossman
+  ID: 
