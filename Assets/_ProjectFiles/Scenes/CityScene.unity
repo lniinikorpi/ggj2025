@@ -4902,6 +4902,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.0074332217
       objectReference: {fileID: 0}
+    - target: {fileID: 1986686238545765429, guid: e20051fbcd0c3f240b3761bbc2da3b3a, type: 3}
+      propertyPath: EatToWinPercentage
+      value: 85
+      objectReference: {fileID: 0}
     - target: {fileID: 2763506112712708544, guid: e20051fbcd0c3f240b3761bbc2da3b3a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.86

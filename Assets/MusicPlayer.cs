@@ -66,7 +66,7 @@ public class MusicPlayer : MonoBehaviour
     /// </summary>
     private AudioClip GetMusicBySceneIndex(int sceneIndex)
     {
-        if (sceneIndex == 8 || sceneIndex == 0)
+        if (sceneIndex == 9 || sceneIndex == 0)
         {
             return clipB;
         }
