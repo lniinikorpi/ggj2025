@@ -27,12 +27,23 @@ public class MainMenuManager : MonoBehaviour
         exitButton.onClick.AddListener(Exit);
     }
 
-    void Continue() { 
-        SceneManager.LoadScene(furthestLevelt);
+    void Continue() {
+        SceneTransition sceneTransition = FindFirstObjectByType<SceneTransition>();
+        sceneTransition.OnTransitionDone.AddListener(() =>
+        {
+            SceneManager.LoadScene(furthestLevelt);
+        });
+        sceneTransition.StartTransitionOut();
     }
 
-    void StartGame() { 
-        SceneManager.LoadScene(1);
+    void StartGame()
+    {
+        SceneTransition sceneTransition = FindFirstObjectByType<SceneTransition>();
+        sceneTransition.OnTransitionDone.AddListener(() =>
+        {
+            SceneManager.LoadScene(1);
+        });
+        sceneTransition.StartTransitionOut();
     }
 
     void Exit()
