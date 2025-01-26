@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
@@ -22,6 +23,11 @@ public class DialogueManager : MonoBehaviour
    void Awake()
     {
         StartDialogue(data);
+    }
+
+    private void Start()
+    {
+        PlayerPrefs.SetInt("Level", SceneManager.GetActiveScene().buildIndex);
     }
 
     public void OnPrimaryClick() {
