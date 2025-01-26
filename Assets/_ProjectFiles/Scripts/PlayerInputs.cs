@@ -80,4 +80,11 @@ public class PlayerInputs : MonoBehaviour
         );
         sceneTransition.StartTransitionOut();
     }
+
+    public void OnCompleteLevel() { 
+        if(GameManager.Instance != null)
+        {
+            GameManager.Instance.CompleteLevel();
+        }
+    }
 }

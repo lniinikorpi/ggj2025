@@ -40,10 +40,14 @@ public class GameManager : MonoBehaviour
         if (m_eatenPercentage >= EatToWinPercentage && wonthelevel == false)
         {
             wonthelevel = true;
-            
-            Debug.Log("You win!");
-            sceneTransition.StartTransitionOut();
+            CompleteLevel();
         }
+    }
+
+    public void CompleteLevel()
+    {
+        Debug.Log("You win!");
+        sceneTransition.StartTransitionOut();
     }
 
 }
