@@ -7,26 +7,20 @@ public class DialogueManager : MonoBehaviour
 {
     public float textSpeed = 10;
     public GameObject dialoguePanel;
-    //public Image rightCharacterImage;
-    //public Image leftCharacterImage;
     public CanvasGroup rightCanvasGroup;
     public CanvasGroup leftCanvasGroup;
     [SerializeField] private SceneTransition sceneTransition;
     public TMP_Text textArea;
-    //private CharacterData rightCharacter;
-    //private CharacterData leftCharacter;
-    //public TMP_Text rightCharacterNameText;
-    //public TMP_Text leftCharacterNameText;
-
     public DialogueData data;
     private Dialogue currentDialogue;
     private int currentDialogueIndex;
     private bool continueDialog;
     private bool isDialogueRunning;
+    public AudioClip penguinsfx;
+    public AudioSource penguin;
 
    void Awake()
     {
-        //dialoguePanel.SetActive(false);
         StartDialogue(data);
     }
 
@@ -114,8 +108,11 @@ public class DialogueManager : MonoBehaviour
             if (!continueDialog)
             {
                 yield return new WaitForSeconds(waitTime);
+                penguin.pitch = Random.Range(0.9f, 1.1f);
+                penguin.PlayOneShot(penguinsfx);
             }
             // Äänen soitto tähän!
+            
         }
         continueDialog = false;
         isDialogueRunning = false;
