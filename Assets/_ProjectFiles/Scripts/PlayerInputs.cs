@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerInputs : MonoBehaviour
 {
@@ -63,5 +64,20 @@ public class PlayerInputs : MonoBehaviour
             m_softBodySphere.spawnedRigidbodies[i].AddForce(m_movement * m_movementSpeed * m_softBodySphere.GetScaleMultiplier());
         }
 
+    }
+
+    public void OnQuit() {
+        SceneTransition sceneTransition = FindFirstObjectByType<SceneTransition>();
+        if (sceneTransition == null) {
+            return;
+        }
+        if (SceneManager.GetActiveScene().buildIndex == 0) {
+            return;
+        }
+        sceneTransition.OnTransitionDone.AddListener(() => {
+                SceneManager.LoadScene(0);
+            }
+        );
+        sceneTransition.StartTransitionOut();
     }
 }
