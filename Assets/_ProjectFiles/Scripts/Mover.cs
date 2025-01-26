@@ -7,6 +7,8 @@ public class Mover : MonoBehaviour
     [SerializeField] private float m_speed = 1;
     [SerializeField] private Transform m_raycastStart;
 
+    private Vector3 m_startPos;
+
     private void Start()
     {
         m_rigidBody = GetComponent<Rigidbody>();
@@ -15,6 +17,7 @@ public class Mover : MonoBehaviour
         {
             m_rigidBody.isKinematic = true;
         }
+        m_startPos = transform.position;
     }
 
     private void FixedUpdate()
@@ -37,6 +40,11 @@ public class Mover : MonoBehaviour
                 int direction = Random.Range(-180, 180);
                 transform.Rotate(0, direction, 0);
             }
+        }
+
+        if(Vector3.Distance(m_startPos, transform.position) > 50)
+        {
+            GetComponent<Eatable>().isEaten = true;
         }
     }
 }
