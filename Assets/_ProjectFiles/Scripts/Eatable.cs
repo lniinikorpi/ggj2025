@@ -55,6 +55,7 @@ public class Eatable : MonoBehaviour
         if (rb.useGravity) { 
             rb.useGravity = false;
             GetComponent<Collider>().enabled = false;
+            rb.isKinematic = false;
         }
     }
 
