@@ -115,6 +115,7 @@ public class DialogueManager : MonoBehaviour
             {
                 yield return new WaitForSeconds(waitTime);
             }
+            // Äänen soitto tähän!
         }
         continueDialog = false;
         isDialogueRunning = false;
