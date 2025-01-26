@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
     {
         m_eatables.AddRange(FindObjectsByType<Eatable>(FindObjectsSortMode.None));
         m_eatablesCount = m_eatables.Count;
+        PlayerPrefs.SetInt("Level", SceneManager.GetActiveScene().buildIndex);
     }
 
     public void RemoveEatable(Eatable eatable)
