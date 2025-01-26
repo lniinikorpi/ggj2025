@@ -34,9 +34,12 @@ public class Eatable : MonoBehaviour
         }
         if (isDigesting)
         {
-            Vector3 dir = (followTarget.position - transform.position).normalized;
-            transform.position += dir * Time.deltaTime * 5;
-            rb.linearVelocity = Vector3.zero;
+            if (followTarget != null)
+            {
+                Vector3 dir = (followTarget.position - transform.position).normalized;
+                transform.position += dir * Time.deltaTime * 5;
+                rb.linearVelocity = Vector3.zero; 
+            }
             if (transform.localScale.x < 0.1f)
             {
                 OnEaten?.Invoke();
