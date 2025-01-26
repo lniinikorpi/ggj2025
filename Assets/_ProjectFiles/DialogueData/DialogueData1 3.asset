@@ -14,39 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - characterData: {fileID: 0}
-    text: "Look at this place, rookie. It\u2019s supposed to be a peaceful park..
-      Families hanging out, birds minding their own business. Instead, we\u2019ve
-      got a picturesque view of pure filth. Makes you wonder what\u2019s wrong with
-      folks."
+    text: You're not a Rookie anymore. However the problem is that the humanity is
+      too far gone...
     extendPrevious: 0
   - characterData: {fileID: 0}
-    text: "You can scrub a planet all day, but if they don\u2019t change their habits...
-      If they\u2019re just gonna toss their trash wherever they stand... This cycle
-      of grime\u2019ll never stop!"
+    text: "We tried everything. Micro-level cleanup, full-scale city sweeps, shutting
+      down black-market labs\u2026 "
     extendPrevious: 0
   - characterData: {fileID: 0}
-    text: "And those ducks? They\u2019re swimming in water laced with microplastics
-      and rotting debris. Not exactly the serene wildlife sanctuary it\u2019s meant
-      to be."
+    text: "People who would rather profit off the planet\u2019s decay than fix it.
+      We\u2019ve tried to reason, tried to help. They had every chance. Now, all
+      that\u2019s left is the final purge."
     extendPrevious: 0
   - characterData: {fileID: 0}
-    text: "Cleanliness isn\u2019t just wiping away the trash. It\u2019s making sure
-      the trash doesn\u2019t show up to begin with. We need to educate these folks,
-      or at least leave a system in place to keep this park maintained after we\u2019re
-      done. Otherwise, we\u2019re just slapping a bandage on a gaping wound."
-    extendPrevious: 0
-  - characterData: {fileID: 0}
-    text: "Welcome to the day-to-day realities of Interstellar Cleanup. It\u2019s
-      not always about fighting mega-parasites or shutting down black-market labs.
-      Sometimes it\u2019s dealing with this: the everyday filth that people leave
-      behind."
-    extendPrevious: 0
-  - characterData: {fileID: 0}
-    text: '*Your eyes fill with determination*'
-    extendPrevious: 0
-  - characterData: {fileID: 0}
-    text: "That\u2019s the spirit, rookie. Let\u2019s show this park what real cleaning
-      looks like."
+    text: "I\u2019m sorry it had to end this way, kid."
     extendPrevious: 0
   Name: Bossman
   ID: 
